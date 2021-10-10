@@ -1,0 +1,19 @@
+#include <stdio.h>
+void Hanoitower(int n,char A,char B,char C)
+{
+	if(1==n)
+	{
+		printf("将编号为%d的盘子从%c柱移到%c柱上\n",n,A,C);
+	}else{
+		Hanoitower(n-1,A,B,C);
+		    printf("将编号为%d的盘子从%c柱移到%c柱上\n",n-1,A,C);
+		Hanoitower(n-1,B,A,C);
+	}
+}
+int main(){
+	int n;
+	printf("请输入盘中的个数:");
+	scanf("%d",&n);
+	    Hanoitower(n,'A','B','C');
+	return 0;
+}
