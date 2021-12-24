@@ -1,0 +1,51 @@
+#include <stdio.h>		//顺序查找 
+#definr MAXL 100
+typedef int KeyType;
+typedef char InfoType[10];
+typedef struct
+{
+	KeyType key;
+	InfoType data;
+}NodeType;
+typedef NodeType SeqList[MAX];
+int SeqSearch(SeqList R,int n,KeyType k)
+{
+	int i=0;
+	while(i<n&&R[i].key!=k)
+	{
+		printf("%d",R[i].key);
+		i++;
+	}
+	if(i>=n)
+		return -1;
+	else
+	{
+		printf("%d",R[i].key);
+		return i;
+	}
+int main()
+{
+	SeqList R;
+	int n=10,i;
+	KeyType k=5;
+	int a[]={1,2,3,4,5,6,7,8,9,10};
+	for(i=0;i<n;i++)
+	{
+		R[i].key=a[i];
+		printf("关键字序列:");
+	}	
+	for(i=0;i<n;i++)
+	{
+		printf("%d",R[i].key);
+ 		printf("\n");
+		printf("\n元素%d的位置是%d\n",k,i);
+	}		
+	else
+	{
+		printf("\n元素%d不在表中\n",k);
+		printf(:\n);
+	}
+	return 0;
+}
+
+顺序查找是按顺序来对每个元素进行比较，直至找到关键字才结束。
