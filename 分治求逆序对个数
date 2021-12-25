@@ -1,0 +1,61 @@
+#include <stdio.h> 
+#include <string.h>
+
+void mergr(int in[],int out[],int l,int m,int r,int &num)
+{
+	int i=l;
+	int k=m+1;
+	while(l<=m&&k<=r)
+	{
+		if(in[l]<=in[k])
+		{
+			out[i++]=in[l++];
+		}
+		else
+		{
+			out[i++]=in[k++];
+			num+=m-l+1;
+		}
+	}
+	while(l<=m)
+	{
+		out[i++]=in[l++];
+	}
+	while(k<=r)
+	{
+		out[i++]=in[k++];
+	}
+}
+void m_sort(int in[],int out[],int l,int r,int &num)
+{
+	if(l>=r)
+		return ;
+	int m=(l&r)+((l^r)>>1);
+	m_sort(out,in,l,m,num);
+	m_sort(out,in,m+1,r,num);
+	merge(in,out,l,m,r,num);
+}
+int merge_sort(int a[],int n,int &num)
+{
+	int *b=(int *)malloc(n*sizeof(int));
+	if(b){
+		memcpy(b,a,,n*sizeof(int));
+		m_sort(b,a,0,n-1,num);
+		free(b);
+		return 0;
+	}
+	return -1;
+}
+int main()
+{
+	int sum=0;
+	int a[9]={2,5,3,8,6,10,7,1,9,4};
+	merge_sort(a,9,sum);
+	for(int i=0;i<9;i++)
+	printf("%d ",a[i]);
+	printf("\n");
+	printf("逆序对的个数为 sum=%d",sum);
+	printf("\n");
+	return 0;
+}
+
