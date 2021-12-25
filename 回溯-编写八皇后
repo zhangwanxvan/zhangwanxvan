@@ -1,0 +1,70 @@
+#include <stdio.h> 
+int Queens[8]={0},Counts=0;
+int Check(int line,int list)
+{
+	for(int index=0;index<line;index++)
+	{
+		int data=Queens[index];
+		
+		if(list==data){
+			return 0;
+		}
+		
+		if((index+data)==(line+list)){
+			return 0;
+		}
+		
+		if((index-data)==(line-list)){
+			return 0;
+		}
+	}
+	
+	return 1;
+}
+
+void print()
+{
+	for(int line=0;line<8;line++)
+	{
+		int list;
+		for(list=0;list<Queens[line];list++)
+			printf("0");
+		printf("#");
+		for(list=Queens[line]+1;list<8;list++){
+			printf("0");
+		}
+		printf("\n");
+	}
+	printf("===================\n");
+}
+void eight_queen(int line)
+{
+	for(int list=0;list<8;list++)
+	{
+		if(Check(line,list))
+		{
+			Queens[line]=list;
+			
+			if(line==7)
+			{
+				Counts++;
+				
+				print();
+				
+				Queens[line]=0;
+				return ;
+			}
+			
+			eight_queen(line+1);
+			
+			Queens[line]=0;
+		}
+	}
+}
+int main()
+{
+	eight_queen(0);
+	printf("有%d种方法",Counts);
+	return 0;
+}
+
